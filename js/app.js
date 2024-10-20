@@ -29,7 +29,6 @@ const init = () => {
   tie = false
   render()
 }
-
 const handleClick = (event) => {
   const target = event.target
   const sqrIndex = parseInt(target.id)
@@ -67,7 +66,11 @@ const checkForTie = () => {
 
 const switchPlayerTurn = () => {
   if (winner) return
-  turn = turn === "X" ? "O" : "X"
+  if (turn === "X") {
+    turn = "O"
+  } else {
+    turn = "X"
+  }
   console.log(turn)
 }
 
@@ -94,11 +97,13 @@ const updateMessage = () => {
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
+
 squareEls.forEach((square) => {
   square.addEventListener("click", handleClick)
 })
 
 resetEls.addEventListener("click", init)
+
 window.onload = init
 
 //1) Define the required variables used to track the state of the game.
